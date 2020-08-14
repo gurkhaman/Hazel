@@ -1,0 +1,49 @@
+﻿  hzpch.cpp
+E:\Kreatur\TheChernoProject\Hazel\Hazel\vendor\spdlog\include\spdlog\fmt\bundled\core.h(327,35): warning C4566: character represented by universal-character-name '\u00B5' cannot be represented in the current code page (949)
+E:\Kreatur\TheChernoProject\Hazel\Hazel\vendor\spdlog\include\spdlog\details\circular_q.h(1,1): warning C4819: The file contains a character that cannot be represented in the current code page (949). Save the file in Unicode format to prevent data loss
+E:\Kreatur\TheChernoProject\Hazel\Hazel\src\Hazel\Log.h(18,54): warning C4251: 'Hazel::Log::s_CoreLogger': class 'std::shared_ptr<spdlog::logger>' needs to have dll-interface to be used by clients of class 'Hazel::Log'
+E:\Kreatur\TheChernoProject\Hazel\Hazel\vendor\spdlog\include\spdlog\details\registry.h(34): message : see declaration of 'std::shared_ptr<spdlog::logger>'
+E:\Kreatur\TheChernoProject\Hazel\Hazel\src\Hazel\Log.h(19,56): warning C4251: 'Hazel::Log::s_ClientLogger': class 'std::shared_ptr<spdlog::logger>' needs to have dll-interface to be used by clients of class 'Hazel::Log'
+E:\Kreatur\TheChernoProject\Hazel\Hazel\vendor\spdlog\include\spdlog\details\registry.h(34): message : see declaration of 'std::shared_ptr<spdlog::logger>'
+  Application.cpp
+E:\Kreatur\TheChernoProject\Hazel\Hazel\src\Hazel\Layer.h(33,26): warning C4251: 'Hazel::Layer::m_DebugName': class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' needs to have dll-interface to be used by clients of class 'Hazel::Layer'
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.27.29110\include\xstring(4564): message : see declaration of 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>'
+E:\Kreatur\TheChernoProject\Hazel\Hazel\src\Hazel\LayerStack.h(25,31): warning C4251: 'Hazel::LayerStack::m_Layers': class 'std::vector<Hazel::Layer *,std::allocator<Hazel::Layer *>>' needs to have dll-interface to be used by clients of class 'Hazel::LayerStack'
+E:\Kreatur\TheChernoProject\Hazel\Hazel\src\Hazel\LayerStack.h(21): message : see declaration of 'std::vector<Hazel::Layer *,std::allocator<Hazel::Layer *>>'
+E:\Kreatur\TheChernoProject\Hazel\Hazel\src\Hazel\LayerStack.h(26,46): warning C4251: 'Hazel::LayerStack::m_LayerInsert': class 'std::_Vector_iterator<std::_Vector_val<std::_Simple_types<_Ty>>>' needs to have dll-interface to be used by clients of class 'Hazel::LayerStack'
+          with
+          [
+              _Ty=Hazel::Layer *
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.27.29110\include\vector(440): message : see declaration of 'std::_Vector_iterator<std::_Vector_val<std::_Simple_types<_Ty>>>'
+          with
+          [
+              _Ty=Hazel::Layer *
+          ]
+E:\Kreatur\TheChernoProject\Hazel\Hazel\src\Hazel\Application.h(28,35): warning C4251: 'Hazel::Application::m_Window': class 'std::unique_ptr<Hazel::Window,std::default_delete<Hazel::Window>>' needs to have dll-interface to be used by clients of class 'Hazel::Application'
+E:\Kreatur\TheChernoProject\Hazel\Hazel\src\Hazel\Application.h(28): message : see declaration of 'std::unique_ptr<Hazel::Window,std::default_delete<Hazel::Window>>'
+  Layer.cpp
+E:\Kreatur\TheChernoProject\Hazel\Hazel\src\Hazel\Layer.h(33,26): warning C4251: 'Hazel::Layer::m_DebugName': class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' needs to have dll-interface to be used by clients of class 'Hazel::Layer'
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.27.29110\include\xstring(4564): message : see declaration of 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>'
+  LayerStack.cpp
+E:\Kreatur\TheChernoProject\Hazel\Hazel\src\Hazel\Layer.h(33,26): warning C4251: 'Hazel::Layer::m_DebugName': class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' needs to have dll-interface to be used by clients of class 'Hazel::Layer'
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.27.29110\include\xstring(4564): message : see declaration of 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>'
+E:\Kreatur\TheChernoProject\Hazel\Hazel\src\Hazel\LayerStack.h(25,31): warning C4251: 'Hazel::LayerStack::m_Layers': class 'std::vector<Hazel::Layer *,std::allocator<Hazel::Layer *>>' needs to have dll-interface to be used by clients of class 'Hazel::LayerStack'
+E:\Kreatur\TheChernoProject\Hazel\Hazel\src\Hazel\LayerStack.h(21): message : see declaration of 'std::vector<Hazel::Layer *,std::allocator<Hazel::Layer *>>'
+E:\Kreatur\TheChernoProject\Hazel\Hazel\src\Hazel\LayerStack.h(26,46): warning C4251: 'Hazel::LayerStack::m_LayerInsert': class 'std::_Vector_iterator<std::_Vector_val<std::_Simple_types<_Ty>>>' needs to have dll-interface to be used by clients of class 'Hazel::LayerStack'
+          with
+          [
+              _Ty=Hazel::Layer *
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.27.29110\include\vector(440): message : see declaration of 'std::_Vector_iterator<std::_Vector_val<std::_Simple_types<_Ty>>>'
+          with
+          [
+              _Ty=Hazel::Layer *
+          ]
+  Log.cpp
+  WindowsWindow.cpp
+E:\Kreatur\TheChernoProject\Hazel\Hazel\vendor\GLFW\include\GLFW\glfw3.h(3163,1): warning C4819: The file contains a character that cannot be represented in the current code page (949). Save the file in Unicode format to prevent data loss
+  Generating Code...
+     Creating library ..\bin\Debug-windows-x86_64\Hazel\Hazel.lib and object ..\bin\Debug-windows-x86_64\Hazel\Hazel.exp
+LINK : warning LNK4098: defaultlib 'LIBCMTD' conflicts with use of other libs; use /NODEFAULTLIB:library
+  Hazel.vcxproj -> E:\Kreatur\TheChernoProject\Hazel\Hazel\..\bin\Debug-windows-x86_64\Hazel\Hazel.dll
