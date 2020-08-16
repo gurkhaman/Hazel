@@ -24,6 +24,7 @@ namespace Hazel
 		// Keyboard
 		KeyPressed,
 		KeyReleased,
+		KeyTyped,
 
 		// Mouse
 		MouseButtonPressed,

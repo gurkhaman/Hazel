@@ -10,8 +10,8 @@
 #include <GLFW/glfw3.h>
 #include <glad/glad.h>
 
-namespace Hazel {
-
+namespace Hazel
+{
 	ImGuiLayer::ImGuiLayer()
 		: Layer("ImGuiLayer")
 	{
@@ -58,7 +58,6 @@ namespace Hazel {
 
 	void ImGuiLayer::OnDetach()
 	{
-
 	}
 
 	void ImGuiLayer::OnUpdate()
@@ -76,7 +75,7 @@ namespace Hazel {
 
 		static bool show = true;
 		ImGui::ShowDemoWindow(&show);
-		
+
 
 		ImGui::Render();
 		ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
@@ -90,7 +89,7 @@ namespace Hazel {
 		dispatcher.Dispatch<MouseMovedEvent>(HZ_BIND_EVENT_FN(ImGuiLayer::OnMouseMovedEvent));
 		dispatcher.Dispatch<MouseScrolledEvent>(HZ_BIND_EVENT_FN(ImGuiLayer::OnMouseScrolledEvent));
 		dispatcher.Dispatch<KeyPressedEvent>(HZ_BIND_EVENT_FN(ImGuiLayer::OnKeyPressedEvent));
-		// dispatcher.Dispatch<KeyTypedEvent>(HZ_BIND_EVENT_FN(ImGuiLayer::OnKeyTypedEvent));
+		dispatcher.Dispatch<KeyTypedEvent>(HZ_BIND_EVENT_FN(ImGuiLayer::OnKeyTypedEvent));
 		dispatcher.Dispatch<KeyReleasedEvent>(HZ_BIND_EVENT_FN(ImGuiLayer::OnKeyReleasedEvent));
 		dispatcher.Dispatch<WindowResizeEvent>(HZ_BIND_EVENT_FN(ImGuiLayer::OnWindowResizeEvent));
 	}
@@ -148,15 +147,15 @@ namespace Hazel {
 		return false;
 	}
 
-	// bool ImGuiLayer::OnKeyTypedEvent(KeyTypedEvent& e)
-	// {
-	// 	ImGuiIO& io = ImGui::GetIO();
-	// 	int keycode = e.GetKeyCode();
-	// 	if (keycode > 0 && keycode < 0x10000)
-	// 		io.AddInputCharacter((unsigned short)keycode);
-	//
-	// 	return false;
-	// }
+	bool ImGuiLayer::OnKeyTypedEvent(KeyTypedEvent& e)
+	{
+		ImGuiIO& io = ImGui::GetIO();
+		int keycode = e.GetKeyCode();
+		if (keycode > 0 && keycode < 0x10000)
+			io.AddInputCharacter((unsigned short)keycode);
+
+		return false;
+	}
 
 	bool ImGuiLayer::OnWindowResizeEvent(WindowResizeEvent& e)
 	{
@@ -167,5 +166,4 @@ namespace Hazel {
 
 		return false;
 	}
-
 }
