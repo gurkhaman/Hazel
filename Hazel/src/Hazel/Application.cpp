@@ -4,6 +4,7 @@
 #include "Hazel/Events/ApplicationEvent.h"
 #include "Hazel/Log.h"
 #include "Input.h"
+#include "glad/glad.h"
 
 namespace Hazel
 {
@@ -58,9 +59,11 @@ namespace Hazel
 				layer->OnUpdate();
 
 			auto[x,y] = Input::GetMousePosition();
-
+			
 			HZ_CORE_TRACE("{0}, {1}", x,y);
 			m_Window->OnUpdate();
+			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
 		}
 	}
 
