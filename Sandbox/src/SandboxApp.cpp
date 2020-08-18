@@ -1,6 +1,8 @@
 #include "hzpch.h"
 #include <Hazel.h>
 
+#include "imgui/imgui.h"
+
 class ExampleLayer : public Hazel::Layer
 {
 public:
@@ -15,6 +17,14 @@ public:
 			HZ_INFO("{0} key is pressed", HZ_KEY_TAB);
 	}
 
+	virtual void OnImGuiRender() override
+	{
+		ImGui::Begin("Test");
+		ImGui::Text("Hello nice");
+		ImGui::End();
+	}
+	
+	
 	void OnEvent(Hazel::Event& e) override
 	{
 		// HZ_TRACE("{0}", e);
@@ -27,7 +37,6 @@ public:
 	Sandbox()
 	{
 		PushLayer(new ExampleLayer());
-		PushOverlay(new Hazel::ImGuiLayer());
 	}
 
 	~Sandbox()
