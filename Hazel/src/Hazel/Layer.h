@@ -3,6 +3,7 @@
 #include "Hazel/Core.h"
 #include "Hazel/Events/Event.h"
 
+// Introduces a layer to the system
 
 namespace Hazel
 {

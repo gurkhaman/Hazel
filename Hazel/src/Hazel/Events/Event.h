@@ -4,7 +4,7 @@
 
 namespace Hazel
 {
-	enum class EventType
+	enum class EventType	// contains all types of events processed by Hazel Engine
 	{
 		None = 0,
 
@@ -32,7 +32,7 @@ namespace Hazel
 		MouseScrolled
 	};
 
-	enum EventCategory
+	enum EventCategory	// specifies the category of types of events
 	{
 		None = 0,
 		EventCategoryApplication = BIT(0),

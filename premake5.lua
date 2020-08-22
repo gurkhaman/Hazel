@@ -1,5 +1,6 @@
 workspace "Hazel"
 	architecture "x64"
+	startproject "Sandbox"
 
 	configurations
 	{
@@ -7,8 +8,6 @@ workspace "Hazel"
 		"Release",
 		"Dist"
 	}
-
-	startproject "Sandbox"
 
 outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
@@ -20,7 +19,6 @@ IncludeDir["ImGui"] = "Hazel/vendor/imgui"
 IncludeDir["glm"] = "Hazel/vendor/glm"
 
 group "Dependencies"
-
 	include "Hazel/vendor/GLFW"
 	include "Hazel/vendor/Glad"
 	include "Hazel/vendor/imgui"
@@ -31,20 +29,21 @@ project "Hazel"
 	location "Hazel"
 	kind "StaticLib"
 	language "C++"
-
+	cppdialect "C++17"
+	staticruntime "on"
 
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
 
 	pchheader "hzpch.h"
 	pchsource "Hazel/src/hzpch.cpp"
-	
+
 	files
 	{
 		"%{prj.name}/src/**.h",
 		"%{prj.name}/src/**.cpp",
 		"%{prj.name}/vendor/glm/glm/**.hpp",
-		"%{prj.name}/vendor/glm/glm/**.inl"
+		"%{prj.name}/vendor/glm/glm/**.inl",
 	}
 
 	defines
@@ -52,7 +51,7 @@ project "Hazel"
 		"_CRT_SECURE_NO_WARNINGS"
 	}
 
-	includedirs 
+	includedirs
 	{
 		"%{prj.name}/src",
 		"%{prj.name}/vendor/spdlog/include",
@@ -62,8 +61,8 @@ project "Hazel"
 		"%{IncludeDir.glm}"
 	}
 
-	links
-	{
+	links 
+	{ 
 		"GLFW",
 		"Glad",
 		"ImGui",
@@ -71,8 +70,6 @@ project "Hazel"
 	}
 
 	filter "system:windows"
-		cppdialect "C++17"
-		staticruntime "Off"
 		systemversion "latest"
 
 		defines
@@ -82,27 +79,27 @@ project "Hazel"
 			"GLFW_INCLUDE_NONE"
 		}
 
-		postbuildcommands
-		{
-			("{COPY} %{cfg.buildtarget.relpath} \"../bin/" .. outputdir .. "/Sandbox/\"")
-		}
-
 	filter "configurations:Debug"
 		defines "HZ_DEBUG"
-		symbols "On"
+		runtime "Debug"
+		symbols "on"
 
 	filter "configurations:Release"
 		defines "HZ_RELEASE"
-		optimize "On"
-	
+		runtime "Release"
+		optimize "on"
+
 	filter "configurations:Dist"
 		defines "HZ_DIST"
-		optimize "On"
+		runtime "Release"
+		optimize "on"
 
 project "Sandbox"
 	location "Sandbox"
 	kind "ConsoleApp"
 	language "C++"
+	cppdialect "C++17"
+	staticruntime "on"
 
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
@@ -113,12 +110,17 @@ project "Sandbox"
 		"%{prj.name}/src/**.cpp"
 	}
 
-	includedirs 
+	includedirs
 	{
 		"Hazel/vendor/spdlog/include",
 		"Hazel/src",
 		"Hazel/vendor",
 		"%{IncludeDir.glm}"
+	}
+
+	prebuildcommands
+	{
+		'taskkill /f /fi "imagename eq $(TargetFileName)"'
 	}
 
 	links
@@ -127,8 +129,6 @@ project "Sandbox"
 	}
 
 	filter "system:windows"
-		cppdialect "C++17"
-		staticruntime "Off"
 		systemversion "latest"
 
 		defines
@@ -138,12 +138,15 @@ project "Sandbox"
 
 	filter "configurations:Debug"
 		defines "HZ_DEBUG"
-		symbols "On"
+		runtime "Debug"
+		symbols "on"
 
 	filter "configurations:Release"
 		defines "HZ_RELEASE"
-		optimize "On"
-	
+		runtime "Release"
+		optimize "on"
+
 	filter "configurations:Dist"
 		defines "HZ_DIST"
-		optimize "On"
+		runtime "Release"
+		optimize "on"

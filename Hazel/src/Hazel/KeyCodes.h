@@ -1,5 +1,7 @@
 #pragma once
 
+/* Contains all the keys that can be called in Hazel */
+
 // From GLFW 
 /* Printable keys */
 #define HZ_KEY_SPACE              32

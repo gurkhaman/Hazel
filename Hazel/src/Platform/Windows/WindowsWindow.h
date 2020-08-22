@@ -3,6 +3,9 @@
 #include "Hazel/Window.h"
 
 #include <GLFW/glfw3.h>
+#include "Hazel/Renderer/GraphicsContext.h"
+
+/* Windows specific window system. */
 
 namespace Hazel
 {
@@ -22,13 +25,14 @@ namespace Hazel
 		void SetVSync(bool enabled) override;
 		bool IsVSync() const override;
 
-		inline virtual void* GetNativeWindow() const {return m_Window;}
+		inline virtual void* GetNativeWindow() const { return m_Window; }
 
 	private:
 		virtual void Init(const WindowProps& props);
 		virtual void Shutdown();
 	private:
 		GLFWwindow* m_Window;
+		GraphicsContext* m_Context;
 
 		struct WindowData
 		{

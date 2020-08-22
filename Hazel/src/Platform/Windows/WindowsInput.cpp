@@ -5,11 +5,13 @@
 
 #include "Hazel/Application.h"
 
+/* Window specific input system*/
+
 namespace Hazel
 {
-	Input* Input::s_Instance = new WindowsInput();
+	Input* Input::s_Instance = new WindowsInput(); // creates a new instance of input
 	
-	bool WindowsInput::IsKeyPressedImpl(int keycode)
+	bool WindowsInput::IsKeyPressedImpl(int keycode) 
 	{
 		auto window = static_cast<GLFWwindow*>(Application::Get().GetWindow().GetNativeWindow());
 		auto state = glfwGetKey(window, keycode);

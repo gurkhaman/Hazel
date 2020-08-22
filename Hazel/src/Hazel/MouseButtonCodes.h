@@ -1,5 +1,7 @@
 #pragma once
 
+/* Contains all the mouse buttons that can be called in Hazel */
+
 // From GLFW 
 #define HZ_MOUSE_BUTTON_1         0
 #define HZ_MOUSE_BUTTON_2         1

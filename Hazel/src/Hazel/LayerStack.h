@@ -5,6 +5,10 @@
 
 #include <vector>
 
+/* Basically a way to manage layers with ways to add or remove layers or overlays
+ * Layers are stored in a vector containing pointers to the Layers
+ */
+
 namespace Hazel
 {
 	class HAZEL_API LayerStack
@@ -23,6 +27,6 @@ namespace Hazel
 
 	private:
 		std::vector<Layer*> m_Layers;
-		unsigned int m_LayerInsertIndex = 0;
+		unsigned int m_LayerInsertIndex = 0; // index starts at 0
 	};
 }

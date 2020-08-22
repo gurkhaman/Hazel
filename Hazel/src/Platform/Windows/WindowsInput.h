@@ -1,6 +1,8 @@
 #pragma once
 #include "Hazel/Input.h"
 
+/* Windows specific input system. Contains the impls which are abstracted in Input.h */
+
 namespace Hazel
 {
 	class WindowsInput : public Input

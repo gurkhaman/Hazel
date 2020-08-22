@@ -7,6 +7,11 @@
 #include "Hazel/LayerStack.h"
 #include "ImGui/ImGuiLayer.h"
 
+// Temp
+#include "Hazel/Renderer/Shader.h"
+
+/* This is basically the main thing we can see. Sandbox uses this to create a display.*/
+
 namespace Hazel
 {
 	class HAZEL_API Application
@@ -33,6 +38,9 @@ namespace Hazel
 		std::unique_ptr<Window> m_Window;
 		bool m_Running = true;
 		LayerStack m_LayerStack;
+
+		unsigned int m_VertexArray, m_VertexBuffer, m_IndexBuffer;
+		std::unique_ptr<Shader> m_Shader;
 
 	private:
 		static Application* s_Instance;

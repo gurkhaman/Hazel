@@ -5,9 +5,11 @@
 #include "Hazel/Core.h"
 #include "Hazel/Events/Event.h"
 
+/* An interface for what a window should behave like*/
+
 namespace Hazel
 {
-	struct WindowProps
+	struct WindowProps // contains the window title, its width and its height.
 	{
 		std::string Title;
 		unsigned int Width;
@@ -27,7 +29,9 @@ namespace Hazel
 	public:
 		using EventCallbackFn = std::function<void(Event&)>;
 
-		virtual ~Window() {}
+		virtual ~Window()
+		{
+		}
 
 		virtual void OnUpdate() = 0;
 

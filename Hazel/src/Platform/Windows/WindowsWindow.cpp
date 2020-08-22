@@ -5,7 +5,9 @@
 #include "Hazel/Events/KeyEvent.h"
 #include "Hazel/Events/MouseEvent.h"
 
-#include <glad/glad.h>
+#include "Platform/OpenGL/OpenGLContext.h"
+
+/* Windows specific window system*/
 
 namespace Hazel
 {
@@ -16,7 +18,7 @@ namespace Hazel
 		HZ_CORE_ERROR("GLFW Error ({0}): {1}", error, description);
 	}
 
-	Window* Window::Create(const WindowProps& props)
+	Window* Window::Create(const WindowProps& props) // creates a new window instance containing Title, Width and Height
 	{
 		return new WindowsWindow(props);
 	}
@@ -37,7 +39,9 @@ namespace Hazel
 		m_Data.Width = props.Width;
 		m_Data.Height = props.Height;
 
+
 		HZ_CORE_INFO("Creating window {0} ({1}, {2})", props.Title, props.Width, props.Height);
+
 
 		if (!s_GLFWInitialized)
 		{
@@ -48,9 +52,14 @@ namespace Hazel
 			s_GLFWInitialized = true;
 		}
 
+		// creates a new window (m_Window is a GLFWwindow pointer.)
 		m_Window = glfwCreateWindow((int)props.Width, (int)props.Height, m_Data.Title.c_str(), nullptr, nullptr);
-		glfwMakeContextCurrent(m_Window);
-		auto status = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
+		// creates a new OpenGLContext. can be later interchanged to other graphics system like vulkan, directx
+		m_Context = new OpenGLContext(m_Window);
+		// initializes the graphics context, which basically means a new GLFW context
+		m_Context->Init();
+
+
 		glfwSetWindowUserPointer(m_Window, &m_Data);
 		SetVSync(true);
 
@@ -153,7 +162,7 @@ namespace Hazel
 	void WindowsWindow::OnUpdate()
 	{
 		glfwPollEvents();
-		glfwSwapBuffers(m_Window);
+		m_Context->SwapBuffers();
 	}
 
 	void WindowsWindow::SetVSync(bool enabled)
