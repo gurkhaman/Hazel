@@ -33,17 +33,17 @@ namespace Hazel
 
 	void LayerStack::PopLayer(Layer* layer) // finds the specific layer and erases it, also reduces the index
 	{
-		auto it = std::find(m_Layers.begin(), m_Layers.end(), layer);
+		auto const it = std::find(m_Layers.begin(), m_Layers.end(), layer);
 		if (it != m_Layers.end())
 		{
 			m_Layers.erase(it);
 			m_LayerInsertIndex--;
 		}
 	}
-
+	
 	void LayerStack::PopOverlay(Layer* overlay) // finds the specific overlay and erases it
 	{
-		auto it = std::find(m_Layers.begin(), m_Layers.end(), overlay);
+		auto const it = std::find(m_Layers.begin(), m_Layers.end(), overlay);
 		if (it != m_Layers.end())
 			m_Layers.erase(it);
 	}
