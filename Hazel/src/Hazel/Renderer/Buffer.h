@@ -1,5 +1,10 @@
 #pragma once
 
+/*
+ * This class contains all the classes, enum types relating to buffers
+ * 
+ */
+
 namespace Hazel
 {
 	enum class ShaderDataType
