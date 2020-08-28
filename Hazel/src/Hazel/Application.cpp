@@ -37,14 +37,21 @@ namespace Hazel
 
 		m_VertexBuffer.reset(VertexBuffer::Create(vertices, sizeof(vertices)));
 
+		std::vector<BufferElement> layout = {
+			{ShaderDataType::Float3, "a_Position"}
+		};
+
+		m_VertexBuffer->SetLayout(layout);
 
 		glEnableVertexAttribArray(0);
 		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), nullptr);
+
 		// Index Buffer
 
 		unsigned int indices[3] = {0, 1, 2};
 		m_IndexBuffer.reset(IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t)));
-
+		
+		
 
 
 		std::string const vertexSrc =
