@@ -1,9 +1,10 @@
 #pragma once
 #include "RendererAPI.h"
-
+#include "OrthographicCamera.h"
+#include "Shader.h"
 /*
  *
- * Main class responsible for beginning scenes, ending scenes and also submitting vertexarray
+ * Main class responsible for beginning scenes, ending scenes and also submitting vertexArray
  * which binds it and sends it to RendererAPI to draw
  * 
  */
@@ -15,11 +16,19 @@ namespace Hazel
 	{
 	public:
 
-		static void BeginScene();
+		static void BeginScene(OrthographicCamera& camera);
 		static void EndScene();
 
-		static void Submit(const std::shared_ptr<VertexArray>& vertexArray);
+		static void Submit(const std::shared_ptr<VertexArray>& vertexArray, const std::shared_ptr<Shader>& shader);
 
 		inline static RendererAPI::API GetAPI() { return RendererAPI::GetAPI(); }
+
+	private:
+		struct SceneData
+		{
+			glm::mat4 ViewProjectionMatrix;
+		};
+
+		static SceneData* m_SceneData;
 	};
 }

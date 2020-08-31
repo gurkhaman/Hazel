@@ -12,6 +12,9 @@
 #include "Renderer/Buffer.h"
 #include "Renderer/VertexArray.h"
 
+// Camera
+#include "Hazel/Renderer/OrthographicCamera.h"
+
 /* This is basically the main thing we can see. Sandbox uses this to create a display.*/
 
 namespace Hazel
@@ -49,7 +52,7 @@ namespace Hazel
 		std::shared_ptr<Shader> m_BlueShader;
 		std::shared_ptr<VertexArray> m_SquareVA;
 
-
+		OrthographicCamera m_Camera;
 	private:
 		static Application* s_Instance;
 	};
