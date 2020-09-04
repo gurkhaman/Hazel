@@ -1,4 +1,6 @@
 #include <Hazel.h>
+
+#include "glm/gtc/matrix_transform.hpp"
 #include "imgui/imgui.h"
 
 class ExampleLayer : public Hazel::Layer
@@ -39,10 +41,10 @@ public:
 		m_SquareVA.reset(Hazel::VertexArray::Create());
 
 		float squareVertices[3 * 4] = {
-			-0.75f, -0.75f, 0.0f,
-			0.75f, -0.75f, 0.0f,
-			0.75f, 0.75f, 0.0f,
-			-0.75f, 0.75f, 0.0f
+			-0.5f, -0.5f, 0.0f,
+			0.5f, -0.5f, 0.0f,
+			0.5f, 0.5f, 0.0f,
+			-0.5f, 0.5f, 0.0f
 		};
 
 		std::shared_ptr<Hazel::VertexBuffer> squareVB;
@@ -66,6 +68,7 @@ public:
 			layout(location = 1) in vec4 a_Color;
 
 			uniform mat4 u_ViewProjection;
+			uniform mat4 u_Transform;
 						
 
 			out vec3 v_Position;
@@ -75,7 +78,7 @@ public:
 			{
 				v_Position = a_Position;
 				v_Color = a_Color;
-				gl_Position = u_ViewProjection * vec4(a_Position, 1.0);
+				gl_Position = u_ViewProjection * u_Transform * vec4(a_Position, 1.0);
 			}
 
 		)";
@@ -105,12 +108,13 @@ public:
 			layout(location = 0) in vec3 a_Position;
 
 			uniform mat4 u_ViewProjection;
+			uniform mat4 u_Transform;
 
 			out vec3 v_Position;
 			void main()
 			{
 				v_Position = a_Position;
-				gl_Position = u_ViewProjection * vec4(a_Position, 1.0);	
+				gl_Position = u_ViewProjection * u_Transform * vec4(a_Position, 1.0);	
 			}
 		)";
 
@@ -145,6 +149,7 @@ public:
 		if (Hazel::Input::IsKeyPressed(HZ_KEY_D))
 			m_CameraRotation -= m_CameraRotationSpeed * ts;
 
+
 		Hazel::RenderCommand::SetClearColor({0.1f, 0.1f, 0.1f, 1});
 		Hazel::RenderCommand::Clear();
 
@@ -153,8 +158,19 @@ public:
 
 		Hazel::Renderer::BeginScene(m_Camera);
 
+		const glm::mat4 scale = glm::scale(glm::mat4(1.0f), glm::vec3(0.1f));
 
-		Hazel::Renderer::Submit(m_SquareVA, m_BlueShader);
+		for (int y = 0; y < 20; ++y)
+		{
+			for (int i = 0; i < 20; ++i)
+			{
+				glm::vec3 pos(i * 0.11f, y * 0.11f, 0.0f);
+				glm::mat4 transform = glm::translate(glm::mat4(1.0f), pos) * scale;
+
+				Hazel::Renderer::Submit(m_SquareVA, m_BlueShader, transform);
+			}
+		}
+
 		Hazel::Renderer::Submit(m_VertexArray, m_Shader);
 
 		Hazel::Renderer::EndScene();
